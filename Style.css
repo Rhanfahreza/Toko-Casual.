@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* Variabel CSS untuk palet warna yang mudah diubah */
+:root {
+    --bg-grad-1: #667eea;
+    --bg-grad-2: #764ba2;
+    --cta-color: #E91E63; /* Warna pink yang kontras */
+    --cta-hover: #c2185b;
+    --text-color: rgba(255, 255, 255, 0.95);
+    --card-bg: rgba(255, 255, 255, 0.1);
+    --card-bg-hover: rgba(255, 255, 255, 0.2);
+    --card-border: rgba(255, 255, 255, 0.2);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh; /* Pastikan background menutupi seluruh layar */
+    
+    /* Animasi background gradient */
+    background: linear-gradient(135deg, var(--bg-grad-1), var(--bg-grad-2));
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem; /* Sedikit lebih besar */
+    letter-spacing: 1px; /* Jarak antar huruf */
+    animation: slideDown 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.katalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px; /* Sedikit lebih banyak spasi */
+    padding: 0 20px;
+    max-width: 1400px; /* Batas lebar maks agar rapi di layar besar */
+    margin: 0 auto; /* Tengah-kan grid */
+}
+
+.produk-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    
+    /* Kunci Glassmorphism: border tipis & bayangan yang lebih halus */
+    border: 1px solid var(--card-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+    
+    /* Easing 'cubic-bezier' membuatnya lebih natural */
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+                background 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+                box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    
+    /* TIPS: Untuk animasi 'staggered' (muncul satu per satu),
+       Anda perlu menambah 'animation-delay' di HTML/JS.
+       Contoh: <div class="produk-card" style="animation-delay: 0.1s;">
+    */
+    animation: fadeInUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.produk-card:hover {
+    transform: translateY(-10px); /* Terangkat lebih tinggi */
+    background: var(--card-bg-hover);
+    /* Bayangan lebih menyebar saat di-hover */
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3);
+}
+
+.produk-card h3 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    color: #fff;
+}
+
+.produk-card p {
+    margin: 6px 0;
+    font-size: 0.95rem;
+    opacity: 0.9; /* Sedikit transparan agar fokus ke judul */
+}
+
+.btn-beli {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px; /* Sedikit lebih besar */
+    background: var(--cta-color); /* Warna CTA yang kuat */
+    color: #fff;
+    border: none;
+    border-radius: 30px; /* Bentuk 'pill' yang modern */
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif; /* Pastikan font sama */
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: background 0.3s ease, 
+                transform 0.2s ease,
+                box-shadow 0.3s ease;
+}
+
+.btn-beli:hover {
+    background: var(--cta-hover);
+    /* Efek tombol 'tertekan' dan 'terangkat' */
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* --- KEYFRAMES --- */
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
