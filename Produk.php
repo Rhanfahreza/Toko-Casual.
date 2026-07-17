@@ -1,4 +1,4 @@
-=<?php
+<?php
 class Produk {
     private $nama;
     private $harga;
