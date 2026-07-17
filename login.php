@@ -47,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Toko Casuals</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     
     <style>
         body { 
@@ -57,17 +58,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             align-items: center; 
             min-height: 100vh; 
             margin: 0;
+            padding: 15px;
+            box-sizing: border-box;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         .login-box { 
             background: #fff; 
-            padding: 40px; 
+            padding: 40px 30px; 
             border-radius: 10px; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
             border: 1px solid #F0EAE4; 
-            width: 350px; 
+            width: 100%;
+            max-width: 380px; 
             text-align: center; 
             transition: background-color 0.3s ease, border-color 0.3s ease;
+            box-sizing: border-box;
         }
         .logo { 
             font-size: 1.8rem; 
@@ -128,6 +133,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             color: #E6EDF3;
         }
         body.dark-mode .register-link { color: #ADBAC7; }
+        body.dark-mode .swal2-popup {
+            background-color: #2D333B;
+            color: #E6EDF3;
+        }
+        body.dark-mode .swal2-title, body.dark-mode .swal2-html-container {
+            color: #E6EDF3 !important;
+        }
     </style>
 </head>
 <body>
@@ -141,11 +153,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form method="POST" action="login.php">
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" value="penus@gmail.com" required>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" value="penus" required>
             </div>
             <button type="submit" class="btn-login">Login</button>
             <?php if (!empty($error_message)): ?>
@@ -157,11 +169,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function () {
             if (localStorage.getItem('theme') === 'dark') {
                 $('body').addClass('dark-mode');
             }
+
+            // Tampilkan alert penawaran login instan
+            Swal.fire({
+                title: 'Halo!',
+                text: 'Selamat datang di Toko Casuals. Untuk memudahkan, Anda bisa langsung masuk menggunakan akun demo (penus) yang sudah kami siapkan otomatis.',
+                icon: 'info',
+                confirmButtonText: 'Login Sekarang',
+                confirmButtonColor: '#A98A74',
+                customClass: {
+                    popup: localStorage.getItem('theme') === 'dark' ? 'dark-mode' : ''
+                }
+            });
         });
     </script>
 </body>

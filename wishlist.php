@@ -38,6 +38,17 @@ $wishlist_ids = $_SESSION['wishlist'];
         .product-price { font-size: 1.1rem; font-weight: 600; color: #8C6A5A; margin-bottom: 15px; }
         .btn-add-to-cart { display: block; width: 100%; padding: 12px; background-color: #A98A74; color: #ffffff; text-align: center; text-decoration: none; border: none; border-radius: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; transition: background-color 0.3s ease; }
         .btn-add-to-cart:hover { background-color: #937460; }
+
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .container { padding: 15px; margin: 20px auto; }
+            .product-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
+            .product-image img { height: 200px; }
+            .product-name { font-size: 1rem; }
+            .product-price { font-size: 0.95rem; }
+            .btn-add-to-cart { padding: 10px; font-size: 0.85rem; }
+        }
+
         body.dark-mode { background-color: #22272E; color: #ADBAC7; }
         body.dark-mode .container { background-color: #2D333B; border-color: #444C56; }
         body.dark-mode h1 { color: #E6EDF3; }
